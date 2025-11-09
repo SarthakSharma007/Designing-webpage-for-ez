@@ -1,15 +1,26 @@
-EZ Labs Project - Cinematic Dark Theme
+<h1 align="center">🌑 EZ Labs Project - Cinematic Dark Theme</h1>
 
-This project is a responsive single-page website for the "EZ Labs" design, built with a Node.js backend and styled with a cinematic dark theme.
+<p align="center">
+  This project is a responsive single-page website for the <strong>"EZ Labs"</strong> design, built with a Node.js backend and styled with a cinematic dark theme.
+</p>
 
-The Node.js server (using Express) serves the static HTML, CSS, and JavaScript files. It also provides two secure backend API endpoints:
+<hr>
 
-/api/contact-us: Handles the contact form submission by forwarding it to the Vernan backend.
+<h2>🧠 Overview</h2>
+<p>
+  The Node.js server (using <strong>Express</strong>) serves the static HTML, CSS, and JavaScript files. It also provides two secure backend API endpoints:
+</p>
 
-/api/gemini: Handles requests for the AI features (Idea Generator and Message Suggester) by securely calling the Google Gemini API with a hidden key.
+<ul>
+  <li><code>/api/contact-us</code>: Handles the contact form submission by forwarding it to the Vernan backend.</li>
+  <li><code>/api/gemini</code>: Handles requests for the AI features (<em>Idea Generator</em> and <em>Message Suggester</em>) by securely calling the Google Gemini API with a hidden key.</li>
+</ul>
 
-Project Structure
+<hr>
 
+<h2>📁 Project Structure</h2>
+
+<pre>
 /
 ├── public/
 │   ├── index.html    (The main webpage)
@@ -20,37 +31,62 @@ Project Structure
 ├── package.json      (Project dependencies and scripts)
 ├── readme.md         (You are here)
 └── server.js         (The Node.js Express server with API routes)
+</pre>
 
+<hr>
 
-Setup & Installation
+<h2>⚙️ Setup & Installation</h2>
 
-Install Node.js: If you don't have it, download and install Node.js from nodejs.org.
+<ol>
+  <li>
+    <strong>Install Node.js</strong><br>
+    If you don't have it, download and install Node.js from 
+    <a href="https://nodejs.org" target="_blank">nodejs.org</a>.
+  </li>
 
-Install Dependencies: Open your terminal in the project's root folder (where package.json is) and run:
+  <li>
+    <strong>Install Dependencies</strong><br>
+    Open your terminal in the project's root folder (where <code>package.json</code> is) and run:
+    <pre><code>npm install</code></pre>
+    This will install <code>express</code>, <code>dotenv</code>, and <code>node-fetch</code>.
+  </li>
 
-npm install
+  <li>
+    <strong>Add API Key</strong><br>
+    <ul>
+      <li>Open the <code>.env</code> file.</li>
+      <li>Get your Google Gemini API key.</li>
+      <li>Paste your key into the file:
+        <pre><code>GEMINI_API_KEY="YOUR_API_KEY_HERE"</code></pre>
+      </li>
+    </ul>
+  </li>
+</ol>
 
+<hr>
 
-This will install express, dotenv, and node-fetch.
+<h2>🚀 How to Run the Project</h2>
 
-Add API Key:
+<ol>
+  <li>
+    <strong>Start the Server:</strong><br>
+    In your terminal (in the project's root folder), run:
+    <pre><code>npm start</code></pre>
+    (This is a shortcut for <code>node server.js</code>).
+  </li>
 
-Open the .env file.
+  <li>
+    <strong>View Your Website:</strong><br>
+    Open your browser and go to:<br>
+    <a href="http://localhost:3000" target="_blank">http://localhost:3000</a><br><br>
+    You should see the complete, responsive <strong>"EZ Labs"</strong> website with the new cinematic dark theme.<br>
+    The contact form and both AI features will be fully functional. 🎬
+  </li>
+</ol>
 
-Get your Google Gemini API key.
+<hr>
 
-Paste your key into the file: GEMINI_API_KEY="YOUR_API_KEY_HERE"
-
-How to Run the Project
-
-Start the Server: In your terminal (in the project's root folder), run:
-
-npm start
-
-
-(This is a shortcut for node server.js).
-
-View Your Website: Open your web browser and go to:
-http://localhost:3000
-
-You should see the complete, responsive "EZ Labs" website with the new dark theme. The contact form and both AI features will be fully functional.
+<p align="center">
+  Made with ❤️ by <strong>Sarthak Sharma</strong><br>
+  <em>DevOps & Cloud Enthusiast | Full Stack Developer</em>
+</p>
