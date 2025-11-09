@@ -1,0 +1,998 @@
+/* Filename: public/style.css */
+
+/* --- 1. Root Variables & Global Reset (NEW "Rainbow" Theme) --- */
+:root {
+  /* Fonts */
+  --font-body: 'Lato', sans-serif;
+  --font-heading: 'Cormorant Garamond', serif;
+
+  /* Colors - NEW "Rainbow" Palette (Default) */
+  /* Using your provided colors */
+  --color-text: #1c1c1c; /* Very dark grey for high contrast */
+  --color-text-light: #555555; /* Softer grey */
+  
+  /* Frosted Glass Backgrounds (Shows rainbow underneath) */
+  --color-bg-section: hsla(0, 0%, 100%, 0.25);
+  --color-bg-section-mid: hsla(0, 0%, 100%, 0.15);
+  --color-border-section: hsla(0, 0%, 100%, 0.3);
+
+  /* Accent Colors from your list */
+  --color-accent-1: #ff7480; /* Deepest coral */
+  --color-accent-2: #ffd3b6; /* Light peach */
+  --color-error: #9a031e; /* Deep Red */
+  --color-success: #04471c; /* Deep Green */
+  
+  /* Sizing */
+  --container-width: 1200px;
+  --container-padding: 1.5rem;
+  --header-height: 5.5rem;
+  
+  /* Transitions & Borders */
+  --transition-fast: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+  --border-radius: 0.25rem;
+  --border-color: var(--color-border-section);
+  --border-color-input: var(--color-accent-1);
+}
+
+/* --- 2. Dark Theme Variables ("Old Money" Aesthetic) --- */
+body.dark-theme {
+  /* Dark Colors */
+  --color-text: #f5f5f5; /* Light text */
+  --color-text-light: #a0a0a0; /* Light grey */
+  
+  /* Dark Frosted Glass */
+  --color-bg-section: hsla(0, 0%, 5%, 0.3);
+  --color-bg-section-mid: hsla(0, 0%, 5%, 0.2);
+  --color-border-section: hsla(0, 0%, 100%, 0.1);
+
+  /* Dark Accent Colors */
+  --color-accent-1: #84e3c8; /* Cool mint from your list */
+  --color-accent-2: #b08968; /* Sophisticated Gold/Beige */
+  
+  /* Dark Borders */
+  --border-color: var(--color-border-section);
+  --border-color-input: #555555;
+}
+
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-body);
+  font-weight: 400;
+  color: var(--color-text);
+  /* background-color: var(--color-bg-light); */ /* Removed solid color */
+  overflow-x: hidden;
+  transition: background-color 0.4s ease, color 0.4s ease;
+}
+
+/* NEW: Animated Rainbow Background */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  /* Your full rainbow gradient */
+  background: linear-gradient(
+    135deg, 
+    #84e3c8, 
+    #a8e6cf, 
+    #dcedc1, 
+    #ffd3b6, 
+    #ffaaa5, 
+    #ff8b94, 
+    #ff7480
+  );
+  background-size: 200% 200%;
+  animation: rainbow-bg 20s ease infinite;
+  z-index: -1;
+}
+
+@keyframes rainbow-bg {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+img, svg {
+  display: block;
+  max-width: 100%;
+}
+
+/* --- 3. Reusable Components --- */
+.container {
+  max-width: var(--container-width);
+  margin: 0 auto;
+  padding: 0 var(--container-padding);
+}
+
+.section {
+  padding: 7rem 0;
+  transition: background-color 0.4s ease;
+  /* NEW: Frosted glass effect */
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-top: 1px solid var(--border-color);
+  border-bottom: 1px solid var(--border-color);
+}
+.bg-light { 
+  background-color: var(--color-bg-section-mid); 
+}
+.bg-dark { 
+  background-color: var(--color-bg-section); 
+}
+.text-center { text-align: center; }
+
+.grid-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  gap: 4rem;
+}
+
+.section-title {
+  font-family: var(--font-heading);
+  font-size: 3.5rem;
+  font-weight: 700;
+  color: var(--color-text);
+  margin-bottom: 2rem;
+  line-height: 1.2;
+  /* NEW: 3D Text Effect */
+  text-shadow: 
+    1px 1px 0 hsla(0, 0%, 100%, 0.3),
+    -1px -1px 0 hsla(0, 0%, 0%, 0.05);
+}
+body.dark-theme .section-title {
+  text-shadow: 
+    1px 1px 0 hsla(0, 0%, 100%, 0.1),
+    -1px -1px 0 hsla(0, 0%, 0%, 0.2);
+}
+
+.section-text {
+  font-size: 1.1rem;
+  font-weight: 300;
+  line-height: 1.8;
+  color: var(--color-text-light);
+  margin-bottom: 1.5rem;
+}
+
+/* --- Buttons --- */
+.btn {
+  display: inline-block;
+  padding: 0.9rem 2.5rem;
+  border-radius: 50px;
+  font-weight: 700;
+  font-size: 1rem;
+  text-decoration: none;
+  border: 2px solid transparent;
+  cursor: pointer;
+  transition: var(--transition-fast);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  letter-spacing: 0.5px;
+}
+
+.btn-gradient {
+  background: var(--color-accent-1);
+  color: #fff; /* White text on strong accent */
+  border-color: var(--color-accent-1);
+}
+/* In dark mode, use light text on mint accent */
+body.dark-theme .btn-gradient {
+  color: #1c1c1c;
+}
+
+.btn-gradient:hover {
+  background: transparent;
+  color: var(--color-accent-1);
+  transform: translateY(-2px);
+}
+
+/* --- 4. Header & Navigation --- */
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 100;
+  background: hsla(0, 0%, 100%, 0.5); /* Light glass */
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--border-color);
+  transition: background-color 0.4s ease, border-color 0.4s ease;
+}
+body.dark-theme .header {
+  background: hsla(0, 0%, 5%, 0.5); /* Dark glass */
+}
+/* Re-style header for peach theme */
+:root {
+  --header-bg: hsla(0, 0%, 100%, 0.5); /* Light glass */
+}
+body.dark-theme {
+  --header-bg: hsla(0, 0%, 5%, 0.5); /* Dark glass */
+}
+.header {
+  background: var(--header-bg);
+}
+
+
+.nav-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: var(--header-height);
+}
+
+.nav-logo {
+  font-family: var(--font-heading);
+  font-size: 2.25rem;
+  font-weight: 700;
+  color: var(--color-text);
+  text-decoration: none;
+}
+
+.nav-list {
+  display: flex;
+  align-items: center;
+  gap: 3rem;
+  list-style: none;
+}
+
+.nav-link {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--color-text-light);
+  text-decoration: none;
+  transition: var(--transition-fast);
+  letter-spacing: 0.5px;
+  position: relative;
+}
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  width: 0%;
+  height: 1px;
+  background: var(--color-text);
+  transition: width 0.4s ease;
+}
+
+.nav-link:hover {
+  color: var(--color-text);
+}
+.nav-link:hover::after {
+  width: 100%;
+}
+
+.nav-link-button {
+  padding: 0.7rem 1.8rem;
+  border-radius: 50px;
+  background-color: var(--color-accent-1);
+  color: #fff; /* White text on strong accent */
+  border: 2px solid var(--color-accent-1);
+}
+body.dark-theme .nav-link-button {
+  color: #1c1c1c;
+}
+.nav-link-button:hover {
+  background-color: transparent;
+  color: var(--color-accent-1);
+}
+.nav-link-button::after {
+  display: none;
+}
+
+.nav-toggle, .nav-close {
+  display: none;
+  cursor: pointer;
+  background: none;
+  border: none;
+  color: var(--color-text);
+  width: 2rem;
+  height: 2rem;
+  z-index: 110;
+}
+
+/* --- 5. Theme Toggle Button --- */
+.theme-toggle-button {
+  background: none;
+  border: none;
+  color: var(--color-text);
+  cursor: pointer;
+  width: 2rem;
+  height: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  margin-left: 1.5rem; /* Space it from the nav */
+  position: relative; /* For icon switching */
+}
+.theme-toggle-button svg {
+  width: 1.25rem;
+  height: 1.25rem;
+  position: absolute;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+.theme-toggle-button .icon-sun {
+  transform: scale(0);
+  opacity: 0;
+}
+.theme-toggle-button .icon-moon {
+  transform: scale(1);
+  opacity: 1;
+}
+
+/* When dark mode is active, flip the icons */
+body.dark-theme .theme-toggle-button .icon-sun {
+  transform: scale(1);
+  opacity: 1;
+}
+body.dark-theme .theme-toggle-button .icon-moon {
+  transform: scale(0);
+  opacity: 0;
+}
+
+
+/* --- 6. Hero Section --- */
+.hero-section {
+  height: 90vh;
+  min-height: 700px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 0 var(--container-padding);
+  /* Hero image removed to show gradient, overlay is enough */
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  border: none;
+  backdrop-filter: none; /* No frost on hero */
+  background-color: transparent; /* Show main gradient */
+  overflow: hidden; /* Contain the prints */
+}
+
+/* NEW: Hero prints */
+.hero-print {
+  position: absolute;
+  z-index: 1;
+  opacity: 0; /* Start hidden */
+  filter: blur(5px);
+  animation: float-and-fade 20s infinite alternate;
+}
+.hero-print svg {
+  width: 100%;
+  height: 100%;
+  fill: hsla(0, 0%, 100%, 0.5); /* Semi-transparent white */
+}
+.hero-print.print-1 {
+  width: 200px;
+  height: 200px;
+  top: 15%;
+  left: 10%;
+  animation-delay: 0s;
+}
+.hero-print.print-2 {
+  width: 100px;
+  height: 100px;
+  top: 60%;
+  right: 15%;
+  animation-delay: -5s;
+}
+.hero-print.print-3 {
+  width: 150px;
+  height: 150px;
+  top: 30%;
+  right: 25%;
+  animation-delay: -10s;
+  transform: rotate(45deg);
+}
+
+@keyframes float-and-fade {
+  0% {
+    opacity: 0;
+    transform: translateY(20px) rotate(0deg) scale(0.9);
+  }
+  25% {
+    opacity: 0.15;
+  }
+  75% {
+    opacity: 0.15;
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-20px) rotate(20deg) scale(1.1);
+  }
+}
+/* End of hero prints */
+
+
+.hero-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: hsla(0, 0%, 100%, 0.1); /* Very subtle overlay */
+  z-index: 1;
+  transition: background-color 0.4s ease;
+}
+body.dark-theme .hero-overlay {
+  background-color: rgba(0, 0, 0, 0.3); /* Dark overlay */
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  animation: fadeIn 1.2s ease-out;
+  /* Add subtle shadow for legibility */
+  text-shadow: 0 2px 15px hsla(0, 0%, 0%, 0.1);
+}
+
+.hero-title {
+  font-family: var(--font-heading);
+  font-size: 5.5rem;
+  font-weight: 700;
+  color: var(--color-text);
+  margin-bottom: 1.5rem;
+  line-height: 1.1;
+  /* NEW: 3D Text Effect */
+  text-shadow: 
+    1px 1px 0 hsla(0, 0%, 100%, 0.4),  /* Light top-left edge */
+    -1px -1px 0 hsla(0, 0%, 0%, 0.05), /* Dark bottom-right edge */
+    0 4px 10px hsla(0, 0%, 0%, 0.1);  /* General drop shadow */
+}
+/* In dark mode, hero text is light */
+body.dark-theme .hero-title,
+body.dark-theme .hero-subtitle {
+  color: #fff; 
+  text-shadow: 
+    1px 1px 0 hsla(0, 0%, 100%, 0.15),
+    0 4px 20px hsla(0, 0%, 0%, 0.4);
+}
+
+.hero-subtitle {
+  font-family: var(--font-body);
+  font-size: 1.5rem;
+  font-weight: 300;
+  color: var(--color-text-light);
+  margin-bottom: 3rem;
+}
+body.dark-theme .hero-subtitle {
+  color: #e0e0e0;
+}
+
+
+/* --- 7. About Section --- */
+.about-image-wrapper {
+  position: relative;
+  /* NEW: 3D Perspective */
+  perspective: 1000px;
+}
+.about-image-wrapper .section-image {
+  border-radius: var(--border-radius);
+  border: 1px solid var(--border-color);
+  transition: var(--transition-fast);
+}
+/* NEW: 3D Image Hover */
+.about-image-wrapper:hover .section-image {
+  transform: rotateY(-8deg) rotateX(3deg) scale(1.05);
+  box-shadow: 0 20px 40px hsla(0, 0%, 0%, 0.2);
+}
+
+
+.about-values-title {
+  font-family: var(--font-heading);
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: var(--color-text);
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+}
+
+.about-values-list {
+  list-style: none;
+  padding-left: 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  color: var(--color-text-light);
+}
+
+.about-values-list li {
+  display: flex;
+  align-items: center;
+  font-size: 1.1rem;
+  font-weight: 300;
+}
+
+.value-icon {
+  color: var(--color-accent-1);
+  font-weight: 700;
+  margin-right: 0.75rem;
+}
+
+/* --- 8. Services Section --- */
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2.5rem;
+  margin-bottom: 5rem;
+}
+
+.service-card {
+  background-color: var(--color-bg-section);
+  border-radius: var(--border-radius);
+  border: 1px solid var(--border-color);
+  overflow: hidden;
+  transition: var(--transition-fast);
+}
+.service-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+  border-color: var(--color-accent-1); /* Accent on hover */
+}
+body.dark-theme .service-card:hover {
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+.service-image {
+  width: 100%;
+  height: 240px;
+  object-fit: cover;
+  filter: grayscale(20%);
+}
+
+.service-content {
+  padding: 2rem;
+}
+
+.service-title {
+  font-family: var(--font-heading);
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: var(--color-text);
+  margin-bottom: 0.75rem;
+}
+
+.service-description {
+  font-weight: 300;
+  color: var(--color-text-light);
+  line-height: 1.7;
+}
+
+/* --- 9. Portfolio Section --- */
+.portfolio-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 3rem;
+}
+
+.portfolio-card {
+  background-color: var(--color-bg-section);
+  border-radius: var(--border-radius);
+  border: 1px solid var(--border-color);
+  transition: var(--transition-fast);
+  /* NEW: 3D Perspective */
+  perspective: 1000px;
+}
+.portfolio-card:hover {
+  /* NEW: 3D Tilt */
+  transform: perspective(1000px) rotateY(-5deg) scale(1.03);
+  box-shadow: 0 20px 40px hsla(0, 0%, 0%, 0.15);
+  border-color: var(--color-accent-1); /* Accent on hover */
+}
+body.dark-theme .portfolio-card:hover {
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+}
+
+.portfolio-image-container {
+  overflow: hidden;
+  border-radius: var(--border-radius) var(--border-radius) 0 0;
+}
+
+.portfolio-image {
+  width: 100%;
+  height: 380px;
+  object-fit: cover;
+  transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+  filter: grayscale(10%);
+}
+/* Remove the old hover effect, as the card handles it now */
+/* .portfolio-card:hover .portfolio-image {
+  transform: scale(1.03); 
+} */
+
+.portfolio-content {
+  padding: 2.5rem;
+}
+
+.portfolio-tag {
+  display: inline-block;
+  font-size: 0.8rem;
+  font-weight: 700;
+  padding: 0.3rem 0.8rem;
+  border-radius: 50px;
+  background-color: var(--color-accent-2);
+  color: var(--color-text); /* Ensure text is readable on the tag */
+  margin-bottom: 1.25rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+body.dark-theme .portfolio-tag {
+  color: #1c1c1c; /* Dark text on light gold tag */
+}
+
+
+.portfolio-title {
+  font-family: var(--font-heading);
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--color-text);
+  margin-bottom: 0.75rem;
+}
+
+.portfolio-description {
+  font-weight: 300;
+  color: var(--color-text-light);
+  margin-bottom: 1.75rem;
+}
+
+.portfolio-button {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--color-accent-1);
+  text-decoration: none;
+  letter-spacing: 0.5px;
+}
+.portfolio-button:hover {
+  text-decoration: underline;
+}
+
+/* --- 10. AI & Contact Form Elements --- */
+.ai-feature-box, .contact-form-wrapper {
+  max-width: 800px;
+  margin: 0 auto;
+  background-color: var(--color-bg-section);
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius);
+  padding: 3rem;
+  transition: background-color 0.4s ease, border-color 0.4s ease;
+}
+.contact-form-wrapper {
+  padding: 3.5rem;
+}
+
+.ai-title {
+  font-family: var(--font-heading);
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--color-text);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 0.5rem;
+}
+.ai-icon {
+  margin-right: 0.75rem;
+  font-size: 1.5rem;
+}
+.ai-subtitle {
+  font-weight: 300;
+  color: var(--color-text-light);
+  text-align: center;
+  margin-bottom: 2.5rem;
+}
+
+.ai-form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-bottom: 2.5rem;
+}
+
+.ai-button-container {
+  text-align: center;
+}
+
+.ai-results-title {
+  font-family: var(--font-heading);
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--color-text);
+  margin-top: 3rem;
+  margin-bottom: 1rem;
+}
+
+.ai-results-box {
+  background-color: hsla(0, 0%, 0%, 0.1);
+  border: 1px solid var(--border-color);
+  border-radius: 0.5rem;
+  padding: 1.5rem;
+  color: var(--color-text-light);
+  white-space: pre-wrap;
+  font-family: 'Courier New', Courier, monospace;
+  max-height: 300px;
+  overflow-y: auto;
+  transition: background-color 0.4s ease, border-color 0.4s ease, color 0.4s ease;
+}
+body.dark-theme .ai-results-box {
+  background-color: hsla(0, 0%, 100%, 0.05);
+}
+
+
+/* --- Form --- */
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+.form-label {
+  display: block;
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--color-text-light);
+  margin-bottom: 0.75rem;
+  letter-spacing: 0.5px;
+}
+
+.form-label-group {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.form-input {
+  width: 100%;
+  padding: 0.9rem 1.1rem;
+  font-size: 1rem;
+  font-family: var(--font-body);
+  color: var(--color-text);
+  background-color: transparent; /* Show gradient through */
+  border: 1px solid var(--border-color-input);
+  border-radius: var(--border-radius);
+  transition: var(--transition-fast);
+}
+.form-input:focus {
+  outline: none;
+  border-color: var(--color-accent-1);
+  box-shadow: 0 0 0 3px rgba(229, 152, 155, 0.2); /* Peach accent glow */
+  background-color: hsla(0, 0%, 100%, 0.1); /* Slight bg on focus */
+}
+body.dark-theme .form-input:focus {
+  box-shadow: 0 0 0 3px rgba(132, 227, 200, 0.2); /* Dark theme accent glow */
+  background-color: hsla(0, 0%, 100%, 0.05);
+}
+
+.form-input::placeholder {
+  color: var(--color-text-light);
+  opacity: 0.7;
+}
+
+textarea.form-input {
+  resize: vertical;
+  min-height: 120px;
+}
+
+.ai-suggest-button {
+  background: none;
+  border: none;
+  color: var(--color-accent-1);
+  font-size: 0.9rem;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+.ai-suggest-button:hover {
+  text-decoration: underline;
+}
+
+.form-button-container {
+  text-align: center;
+  margin-top: 2rem;
+}
+
+/* Form Messages */
+.form-error {
+  font-size: 0.9rem;
+  color: var(--color-error);
+  margin-top: 0.5rem;
+  display: none; /* Hidden by default */
+  text-shadow: 0 1px 1px hsla(0, 0%, 100%, 0.2);
+}
+.form-message {
+  padding: 1rem 1.5rem;
+  border-radius: var(--border-radius);
+  margin-bottom: 2rem;
+  font-weight: 500;
+}
+.success-message {
+  background-color: rgba(4, 71, 28, 0.1);
+  border: 1px solid rgba(4, 71, 28, 0.3);
+  color: var(--color-success);
+}
+body.dark-theme .success-message {
+  background-color: rgba(132, 227, 200, 0.1);
+  border-color: rgba(132, 227, 200, 0.3);
+  color: #84e3c8;
+}
+
+.error-message {
+  background-color: rgba(154, 3, 30, 0.1);
+  border: 1px solid rgba(154, 3, 30, 0.3);
+  color: var(--color-error);
+}
+body.dark-theme .error-message {
+  background-color: rgba(255, 122, 128, 0.1);
+  border-color: rgba(255, 122, 128, 0.3);
+  color: #ff7a80;
+}
+
+.hidden { display: none; }
+
+/* Loader Animation */
+.btn-loader {
+  width: 1.25em;
+  height: 1.25em;
+  border: 2px solid currentColor;
+  border-bottom-color: transparent;
+  border-radius: 50%;
+  display: inline-block;
+  animation: rotation 1s linear infinite;
+}
+.loader-hidden { display: none; }
+@keyframes rotation {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* --- 11. Footer --- */
+.footer {
+  padding: 4.5rem 0;
+  background-color: var(--color-bg-section-mid);
+  border-top: 1px solid var(--border-color);
+  color: var(--color-text-light);
+  font-weight: 300;
+  transition: background-color 0.4s ease, border-color 0.4s ease, color 0.4s ease;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+.footer-note {
+  font-size: 0.9rem;
+  color: var(--color-text-light);
+  opacity: 0.7;
+  margin-top: 0.25rem;
+}
+body.dark-theme .footer-note {
+  color: #777;
+}
+
+/* --- 12. Responsive Design --- */
+@media (max-width: 992px) {
+  .grid-container {
+    grid-template-columns: 1fr;
+  }
+  .about-image-wrapper {
+    order: -1; /* Image on top on mobile */
+  }
+  .services-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+  .portfolio-grid {
+    grid-template-columns: 1fr;
+  }
+  .hero-title {
+    font-size: 4rem;
+  }
+  .hero-subtitle {
+    font-size: 1.25rem;
+  }
+  .nav-list {
+    gap: 2rem; /* Tighter spacing for toggle button */
+  }
+}
+
+@media (max-width: 768px) {
+  :root { --header-height: 4.5rem; }
+  .section { padding: 4rem 0; }
+  
+  /* Mobile Navigation */
+  .nav-menu {
+    position: fixed;
+    top: 0;
+    right: -100%; /* Start off-screen */
+    width: 90%;
+    max-width: 320px;
+    height: 100vh;
+    background-color: var(--color-bg-light);
+    box-shadow: -10px 0 30px rgba(0, 0, 0, 0.1);
+    transition: right 0.4s ease-in-out, background-color 0.4s ease;
+    z-index: 105;
+    padding: 6rem 2rem 2rem;
+    /* Add frost to mobile menu */
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    background-color: var(--color-bg-section);
+  }
+  
+  .nav-menu.show-menu {
+    right: 0;
+  }
+  
+  .nav-list {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 2.5rem;
+  }
+  
+  .nav-link {
+    font-size: 1.5rem;
+    font-family: var(--font-heading);
+    font-weight: 700;
+    color: var(--color-text);
+  }
+  .nav-link::after { display: none; }
+  
+  .nav-link-button {
+    width: 100%;
+    text-align: center;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    font-family: var(--font-body);
+  }
+  
+  .nav-toggle, .theme-toggle-button {
+    display: block;
+  }
+  
+  .nav-close {
+    display: block;
+    position: absolute;
+    top: 1.5rem;
+    right: 1.5rem;
+  }
+
+  .hero-title {
+    font-size: 3rem;
+  }
+  
+  .section-title {
+    font-size: 2.5rem;
+  }
+
+  .services-grid {
+    grid-template-columns: 1fr;
+  }
+  .ai-form-grid {
+    grid-template-columns: 1fr;
+  }
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+  .ai-feature-box, .contact-form-wrapper {
+    padding: 2rem;
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}

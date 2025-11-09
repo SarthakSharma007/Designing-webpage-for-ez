@@ -1,0 +1,334 @@
+<!-- Filename: public/index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EZ Labs - Creative Solutions</title>
+  
+  <!-- Main Stylesheet -->
+  <link rel="stylesheet" href="style.css">
+  
+  <!-- UPDATED: Google Fonts for "Old Money" Aesthetic -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+  
+  <!-- Frontend JavaScript (defer loads it after the HTML) -->
+  <script src="script.js" defer></script>
+</head>
+<body> <!-- The 'dark-theme' class will be added here by JS -->
+
+  <!-- Header & Navigation Bar -->
+  <header class="header" id="header">
+    <nav class="container nav-container">
+      <a href="#home" class="nav-logo">EZ Labs</a>
+      
+      <!-- Mobile Menu Button (Hamburger) -->
+      <button class="nav-toggle" id="nav-toggle" aria-label="Open navigation menu">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="icon-hamburger">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+        </svg>
+      </button>
+
+      <!-- Navigation Menu -->
+      <div class="nav-menu" id="nav-menu">
+        <ul class="nav-list">
+          <li class="nav-item"><a href="#home" class="nav-link">Home</a></li>
+          <li class="nav-item"><a href="#about" class="nav-link">About Us</a></li>
+          <li class="nav-item"><a href="#services" class="nav-link">Services</a></li>
+          <li class="nav-item"><a href="#portfolio" class="nav-link">Portfolio</a></li>
+          <li class="nav-item"><a href="#contact" class="nav-link nav-link-button">Contact</a></li>
+        </ul>
+        
+        <!-- Mobile Menu Close Button -->
+        <button class="nav-close" id="nav-close" aria-label="Close navigation menu">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="icon-close">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+      </div>
+      
+      <!-- NEW: Theme Toggle Button -->
+      <button class="theme-toggle-button" id="theme-toggle-button" aria-label="Toggle dark mode">
+        <!-- Moon Icon (Dark Mode) -->
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="icon-moon">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M21.752 15.002A9.718 9.718 0 0118 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 003 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 009.002-5.998z" />
+        </svg>
+        <!-- Sun Icon (Light Mode) -->
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="icon-sun">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2.25m6.364.386l-1.591 1.591M21 12h-2.25m-.386 6.364l-1.591-1.591M12 18.75V21m-6.364-.386l1.591-1.591M3 12H.75m.386-6.364l1.591 1.591M12 6.375V3" />
+        </svg>
+      </button>
+
+    </nav>
+  </header>
+
+  <main>
+    <!-- Section 1: Hero -->
+    <section id="home" class="hero-section">
+      
+      <!-- NEW: Decorative floral/leaf prints -->
+      <div class="hero-print print-1" aria-hidden="true">
+        <svg viewBox="0 0 123 118" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M59.253 6.64303C62.285 1.48603 69.014 1.48603 72.046 6.64303L81.748 23.351C83.056 25.59 85.342 27.01 87.887 27.32L107.412 29.871C113.332 30.641 115.82 37.89 111.411 41.77L96.88 54.49C95.048 56.103 94.062 58.583 94.212 61.127L98.683 80.468C100.279 86.29 94.136 90.72 88.892 87.65L71.492 77.416C69.255 76.088 66.52 76.088 64.282 77.416L46.882 87.65C41.638 90.72 35.495 86.29 37.091 80.468L41.562 61.127C41.712 58.583 40.726 56.103 38.894 54.49L24.363 41.77C19.954 37.89 22.442 30.641 28.362 29.871L47.887 27.32C50.432 27.01 52.718 25.59 54.026 23.351L59.253 6.64303Z" fill="white"/>
+        </svg>
+      </div>
+      <div class="hero-print print-2" aria-hidden="true">
+        <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M80.898 48.068C85.53 44.53 85.53 37.47 80.898 33.932L53.79 13.06C49.158 9.522 42.067 13.052 42.067 18.592V63.408C42.067 68.948 49.158 72.478 53.79 68.94L80.898 48.068Z" fill="white"/>
+        </svg>
+      </div>
+      <div class="hero-print print-3" aria-hidden="true">
+        <svg viewBox="0 0 119 118" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M57.253 6.64303C60.285 1.48603 67.014 1.48603 70.046 6.64303L79.748 23.351C81.056 25.59 83.342 27.01 85.887 27.32L105.412 29.871C111.332 30.641 113.82 37.89 109.411 41.77L94.88 54.49C93.048 56.103 92.062 58.583 92.212 61.127L96.683 80.468C98.279 86.29 92.136 90.72 86.892 87.65L69.492 77.416C67.255 76.088 64.52 76.088 62.282 77.416L44.882 87.65C39.638 90.72 33.495 86.29 35.091 80.468L39.562 61.127C39.712 58.583 38.726 56.103 36.894 54.49L22.363 41.77C17.954 37.89 20.442 30.641 26.362 29.871L45.887 27.32C48.432 27.01 50.718 25.59 52.026 23.351L57.253 6.64303Z" fill="white"/>
+        </svg>
+      </div>
+      <!-- End of prints -->
+
+      <div class="hero-overlay"></div>
+      <div class="container hero-content">
+        <h1 class="hero-title">Welcome to EZ Labs</h1>
+        <p class="hero-subtitle">We build creative solutions for the modern web.</p>
+        <a href="#contact" class="btn btn-gradient">Get In Touch</a>
+      </div>
+    </section>
+
+    <!-- Section 2: About -->
+    <section id="about" class="section bg-light">
+      <div class="container grid-container">
+        <div class="about-image-wrapper">
+          <!-- UPDATED: New image from Unsplash -->
+          <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1740&q=80" alt="Our Team at EZ Labs" class="section-image">
+        </div>
+        <div class="section-content">
+          <h2 class="section-title">About Us</h2>
+          <p class="section-text">
+            We are a passionate team of designers, developers, and strategists dedicated to creating amazing digital experiences. We believe in the power of technology to solve problems and drive growth.
+          </p>
+          <p class="section-text">
+            Our mission is to partner with clients to build innovative products that users love. From concept to launch, we're with you every step of the way.
+          </p>
+          
+          <!-- NEW: Added list for more content -->
+          <h3 class="about-values-title">Our Values</h3>
+          <ul class="about-values-list">
+            <li><span class="value-icon">✓</span> Innovation</li>
+            <li><span class="value-icon">✓</span> Collaboration</li>
+            <li><span class="value-icon">✓</span> Quality</li>
+            <li><span class="value-icon">✓</span> Transparency</li>
+          </ul>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 3: Services -->
+    <section id="services" class="section bg-dark">
+      <div class="container">
+        <h2 class="section-title text-center">Our Services</h2>
+        <div class="services-grid">
+          <!-- Service Card 1 -->
+          <div class="service-card">
+            <img src="https://placehold.co/400x300/f5f5f5/4a4a4a?text=Film+Production" alt="Film Production" class="service-image">
+            <div class="service-content">
+              <h3 class="service-title">Film Production</h3>
+              <p class="service-description">High-quality video content to tell your brand's story.</p>
+            </div>
+          </div>
+          <!-- Service Card 2 -->
+          <div class="service-card">
+            <img src="https://placehold.co/400x300/f5f5f5/4a4a4a?text=Branding" alt="Branding" class="service-image">
+            <div class="service-content">
+              <h3 class="service-title">Branding</h3>
+              <p class="service-description">Crafting unique brand identities that resonate with your audience.</p>
+            </div>
+          </div>
+          <!-- Service Card 3 -->
+          <div class="service-card">
+            <img src="https://placehold.co/400x300/f5f5f5/4a4a4a?text=Art+Curation" alt="Art Curation" class="service-image">
+            <div class="service-content">
+              <h3 class="service-title">Art Curation</h3>
+              <p class="service-description">Curating art and visual elements to create stunning atmospheres.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Gemini AI Idea Generator -->
+        <div class="ai-feature-box" id="ai-idea-generator">
+          <h3 class="ai-title">
+            <span class="ai-icon">✨</span>
+            Need Inspiration?
+          </h3>
+          <p class="ai-subtitle">Select a service, describe your project, and let our AI help you brainstorm.</p>
+          
+          <div class="ai-form-grid">
+            <div>
+              <label for="ai-service-select" class="form-label">Service</label>
+              <select id="ai-service-select" class="form-input">
+                <option value="Film Production">Services / Film Production</option>
+                <option value="Branding">Services / Branding</option>
+                <option value="Art Curation">Services / Art Curation</option>
+              </select>
+            </div>
+            <div>
+              <label for="ai-project-idea" class="form-label">Your Project Idea</label>
+              <input type="text" id="ai-project-idea" class="form-input" placeholder="e.g., 'a new local coffee shop'">
+            </div>
+          </div>
+          
+          <div class="ai-button-container">
+            <button class="btn btn-gradient" id="ai-generate-button">
+              <span class="btn-text">Generate Ideas</span>
+              <span class="btn-loader loader-hidden"></span>
+            </button>
+          </div>
+
+          <div id="ai-idea-error" class="form-message error-message hidden"></div>
+          <div id="ai-idea-results-container" class="hidden">
+            <h4 class="ai-results-title">💡 Here are a few ideas:</h4>
+            <pre class="ai-results-box" id="ai-idea-results"></pre>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 4: Portfolio -->
+    <section id="portfolio" class="section bg-light">
+      <div class="container">
+        <h2 class="section-title text-center">Portfolio</h2>
+        <div class="portfolio-grid">
+          
+          <!-- Portfolio Item 1 -->
+          <div class="portfolio-card">
+            <div class="portfolio-image-container">
+              <img src="https://images.unsplash.com/photo-1557804506-669a67965ba0?ixlib=rb-4.0.3&auto=format&fit=crop&w=1674&q=80" alt="Project Alpha" class="portfolio-image">
+            </div>
+            <div class="portfolio-content">
+              <span class="portfolio-tag">Branding</span>
+              <h3 class="portfolio-title">Project Alpha</h3>
+              <p class="portfolio-description">A complete brand identity overhaul for a fast-growing tech startup.</p>
+              <a href="#" class="portfolio-button">View Project</a>
+            </div>
+          </div>
+          
+          <!-- Portfolio Item 2 -->
+          <div class="portfolio-card">
+            <div class="portfolio-image-container">
+              <img src="https://images.unsplash.com/photo-1556761175-b413da4baf72?ixlib=rb-4.0.3&auto=format&fit=crop&w=1674&q=80" alt="Project Beta" class="portfolio-image">
+            </div>
+            <div class="portfolio-content">
+              <span class="portfolio-tag">Film Production</span>
+              <h3 class="portfolio-title">Project Beta</h3>
+              <p class="portfolio-description">A cinematic brand story video that increased user engagement by 40%.</p>
+              <a href="#" class="portfolio-button">View Project</a>
+            </div>
+          </div>
+          
+          <!-- NEW: Portfolio Item 3 -->
+          <div class="portfolio-card">
+            <div class="portfolio-image-container">
+              <img src="https://images.unsplash.com/photo-1522204523234-8729aa6e3d5f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1740&q=80" alt="Project Gamma" class="portfolio-image">
+            </div>
+            <div class="portfolio-content">
+              <span class="portfolio-tag">Art Curation</span>
+              <h3 class="portfolio-title">Project Gamma</h3>
+              <p class="portfolio-description">Interior art curation and installation for a new boutique hotel.</p>
+              <a href="#" class="portfolio-button">View Project</a>
+            </div>
+          </div>
+          
+          <!-- NEW: Portfolio Item 4 -->
+          <div class="portfolio-card">
+            <div class="portfolio-image-container">
+              <img src="https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?ixlib=rb-4.0.3&auto=format&fit=crop&w=1655&q=80" alt="Project Delta" class="portfolio-image">
+            </div>
+            <div class="portfolio-content">
+              <span class="portfolio-tag">Branding</span>
+              <h3 class="portfolio-title">Project Delta</h3>
+              <p class="portfolio-description">Packaging design and branding for an artisanal coffee roaster.</p>
+              <a href="#" class="portfolio-button">View Project</a>
+            </div>
+          </div>
+          
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 5: Contact -->
+    <section id="contact" class="section bg-dark">
+      <div class="container">
+        <h2 class="section-title text-center">Contact Us</h2>
+        <div class="contact-form-wrapper">
+          
+          <!-- This is where success/error messages will appear -->
+          <div id="form-submission-message" class="form-message hidden"></div>
+          
+          <form id="contact-form">
+            <div class="form-grid">
+              <!-- Name -->
+              <div>
+                <label for="name" class="form-label">Name*</label>
+                <input type="text" id="name" name="name" class="form-input" placeholder="John Doe">
+                <div class="form-error" id="error-name"></div>
+              </div>
+              
+              <!-- Email -->
+              <div>
+                <label for="email" class="form-label">Email*</label>
+                <input type="email" id="email" name="email" class="form-input" placeholder="name@company.com">
+                <div class="form-error" id="error-email"></div>
+              </div>
+            </div>
+
+            <!-- Phone -->
+            <div class="form-group">
+              <label for="phone" class="form-label">Phone (Optional)</label>
+              <input type="tel" id="phone" name="phone" class="form-input" placeholder="908765498">
+              <div class="form-error" id="error-phone"></div>
+            </div>
+
+            <!-- AI Suggester Project Field -->
+            <div class="form-group">
+              <label for="ai-project-message" class="form-label">Project Description (for AI Message Suggester)</label>
+              <input type="text" id="ai-project-message" class="form-input" placeholder="e.g., 'A new e-commerce site for my bakery'">
+            </div>
+            
+            <!-- Message -->
+            <div class="form-group">
+              <div class="form-label-group">
+                <label for="message" class="form-label">Message*</label>
+                <button type="button" class="ai-suggest-button" id="ai-suggest-message-button">
+                  <span class="ai-icon">✨</span>
+                  <span class="btn-text">Suggest Message</span>
+                  <span class="btn-loader loader-hidden"></span>
+                </button>
+              </div>
+              <textarea id="message" name="message" rows="5" class="form-input" placeholder="Your message..."></textarea>
+              <div class="form-error" id="error-message"></div>
+              <div class="form-error" id="error-ai-suggest"></div>
+            </div>
+            
+            <!-- Submit Button -->
+            <div class="form-button-container">
+              <button type="submit" class="btn btn-gradient" id="submit-button">
+                <span class="btn-text">Submit</span>
+                <span class="btn-loader loader-hidden"></span>
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container text-center">
+      <p>&copy; 2025 EZ Labs. All rights reserved.</p>
+      <p class="footer-note">Assessment project</p>
+    </div>
+  </footer>
+
+</body>
+</html>
