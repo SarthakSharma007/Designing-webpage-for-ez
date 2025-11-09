@@ -28,6 +28,7 @@
 │   └── script.js     (Frontend logic for nav, form, and AI features)
 │
 ├── .env              (Stores your secret Gemini API key)
+├── .gitignore         
 ├── package.json      (Project dependencies and scripts)
 ├── readme.md         (You are here)
 └── server.js         (The Node.js Express server with API routes)
